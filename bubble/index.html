@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<title>文字冒泡demo - Shenzm</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		button{
+			margin: 20px;
+			width: 100px;
+			height: 25px;
+			border: 0;
+		}
+
+		.container {
+			width: 300px;
+			height: 300px;
+			background: #eee;
+			position: relative;
+		}
+
+		.box {
+			position: absolute;
+			bottom: 0;
+			margin-left: 30px;
+			padding-left: 15px;
+			width: 150px;
+			height: 30px;
+			line-height: 30px;
+			border-radius: 5%;
+			background-color: #4bd865;
+			color: white;
+			border: 1px solid #eee;
+
+		}
+
+		.animate {
+			animation-name: move_01, move_02, move_03, move_04;
+      		animation-duration: 1s, 1s, 1s, 1s;
+      		animation-delay: 0s, 2s, 4s, 6s;
+      		animation-fill-mode: both, forwards, forwards, forwards;
+		}
+
+		@keyframes move_01 {
+		  0% {
+		    visibility: hidden;
+		    opacity: 0;
+		    transform: translate(0, 100%) scale(0.8);
+		  }
+		  
+		  50% {
+		    visibility: visible;
+		    opacity: 0.5;
+		    transform: translate(0, 50%) scale(1.2);
+		  }
+
+		  100% {
+		    visibility: visible;
+		    opacity: 1;
+		    transform: translate(0, 0) scale(0.8);
+		  }
+		}
+
+		@keyframes move_02 {
+		  0% {
+		    visibility: visible;
+		    opacity: 1;
+		    transform: translate(0, 0) scale(0.8);
+		  }
+
+		  100% {
+		    visibility: visible;
+		    opacity: 1;
+		    transform: translate(0, -150%) scale(1.2);
+		  }
+		}
+		
+		@keyframes move_03 {
+		  0% {
+		    visibility: visible;
+		    opacity: 1;
+		    transform: translate(0, -150%) scale(1.2);
+		  }
+
+		  100% {
+		    visibility: visible;
+		    opacity: 1;
+		    transform: translate(0, -300%) scale(1);
+		  }
+		}
+
+		@keyframes move_04 {
+		  0% {
+		    visibility: visible;
+		    opacity: 1;
+		    transform: translate(0, -300%) scale(1);
+		  }
+
+		  100% {
+		    visibility: hidden;
+		    opacity: 0;
+		    transform: translate(0, -450%) scale(0.8);
+		  }
+		}
+	</style>
+</head>
+<body>
+	<button id="start">开始</button>
+	<div id="container" class="container">
+	</div>
+	<script type="text/javascript">
+		var btn = document.getElementById('start');
+		btn.addEventListener("click", function(){
+			var i = 0;
+			var timer = setInterval(function(){
+				if (i >= 5) {
+					clearInterval(timer);
+				}
+
+				var c = document.getElementById('container');
+
+				var newDiv = document.createElement("div"); 
+
+  				var newContent = document.createTextNode("Hi Shenzm!" + (++i)); 
+  				newDiv.appendChild(newContent);
+  				newDiv.classList.add('box', 'animate');
+  				c.appendChild(newDiv);
+			}, 2000);
+		}, false);
+	</script>
+</body>
+</html>
