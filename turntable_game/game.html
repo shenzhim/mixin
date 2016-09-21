@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style type="text/css">
+			.box-container {
+				width: 300px;
+				height: 300px;
+			}
+
+			.box {
+				box-sizing: border-box;
+				width: 100px;
+				height: 100px;
+				float: left;
+				border: 1px solid #eee;
+				text-align: center;
+				padding-top: 45px;
+			}
+
+			.start {
+				background-color: red;
+				color: white;
+			}
+
+			.selectd {
+				background-color: red;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box-container">
+			<div class="box num-1">1</div>
+			<div class="box num-2">2</div>
+			<div class="box num-3">3</div>
+			<div class="box num-8">8</div>
+			<div class="box start">开始</div>
+			<div class="box num-4">4</div>
+			<div class="box num-7">7</div>
+			<div class="box num-6">6</div>
+			<div class="box num-5">5</div>
+		</div>
+
+		<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+		<script src="./easing.js"></script>
+		<script type="text/javascript">
+			var easing = BezierEasing(0.32, 0.79, 1, 1);
+
+			$('.start').on('click', function(){
+				$('.box').removeClass('selectd');
+
+				var duration = 5000; //动画时长 5s
+	        	var s = 40; //总的偏移量
+				var target = Math.ceil(Math.random() * 8);
+				console.log(target);
+				s = s + target;
+
+				var start_time = Date.now();
+	        	var timer = setInterval(function(){
+		            var p = (Date.now() - start_time) / duration;
+		            var num = Math.floor(s * easing(p)) % 8 + 1;
+
+		            if(p >= 1.0) {
+		                p = 1;
+		                clearInterval(timer);
+		            }
+
+		            if (num - 1 === 0) {
+		            	$('.num-8').removeClass('selectd');
+		            } else {
+		            	$('.num-' + (num -1)).removeClass('selectd');
+		            }
+		            
+		            $('.num-' + num).addClass('selectd');
+		        }, 20);
+			});
+		</script>
+	</body>
+</html>
