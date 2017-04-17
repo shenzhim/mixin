@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="/public/reset.css">
+    </head>
+    <body>
+    	<h2>HTTP2 测试</h2>
+    	<script src="/public/jquery.min.js"></script>
+    	<script>
+		  $(function () {
+		  	for(var i = 0; i < 7; i++) {
+		    	$.get('/xhrtest');
+		    }
+		  });
+		</script>
+    </body>
+</html>
