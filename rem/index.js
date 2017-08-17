@@ -27,7 +27,7 @@
     h.appendChild(d);
     var rootfs = parseFloat(getComputedStyle(d, null).getPropertyValue('width'));
     var fun = function() {
-        document.documentElement.style.fontSize = window.innerWidth / designWidth * rem2px / rootfs * 100 + '%';
+        document.documentElement.style.fontSize = document.documentElement.clientWidth / designWidth * rem2px / rootfs * 100 + '%';
     }
     fun();
     window.addEventListener("orientationchange" in window ? "orientationchange" : "resize", fun, false);
