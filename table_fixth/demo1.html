@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			
+			table {
+			    border-spacing: 0;
+			    border-collapse: collapse;
+			    width: 100%;
+				max-width: 100%;
+				margin-bottom: 20px;
+			}
+			
+			.table>tbody>tr>td,
+			.table>tbody>tr>th,
+			.table>tfoot>tr>td,
+			.table>tfoot>tr>th,
+			.table>thead>tr>td,
+			.table>thead>tr>th {
+				padding: 8px;
+				line-height: 1.42857143;
+				vertical-align: top;
+				border: 1px solid #C1C1C1;
+			}
+			
+			.table-striped>tbody>tr:nth-of-type(odd) {
+				background-color: #f9f9f9;
+			}
+			
+			.table>thead>tr>th{
+				background: #ddd;
+				border: 1px solid #C1C1C1;
+			    position: relative;
+			}
+			
+			.table-cont {
+				max-height: 100px;
+				overflow: auto;
+				background: #ddd;
+				margin: 20px 10px;
+				box-shadow: 0 0 1px 3px #ddd;
+			}
+		</style>
+	</head>
+	<body>
+		<div class='table-cont' id='table-cont'>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>学号</th>
+						<th>姓名</th>
+						<th>民族</th>
+						<th>年级</th>
+						<th>性别</th>
+						<th>出生年月</th>
+						<th>所学专业</th>
+						<th>特长</th>
+						<th>联系方式</th>
+						<th>个人爱好</th>
+						<th>备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>1</th>
+						<td>20170001</td>
+						<td>张三</td>
+						<td>汉族</td>
+						<td>一年级</td>
+						<td>男</td>
+						<td>1999年10月01日</td>
+						<td>通信工程</td>
+						<td>武术</td>
+						<td>18818674239</td>
+						<td>古玩、旅行</td>
+						<td>走读</td>
+					</tr>
+					<tr>
+						<th>2</th>
+						<td>20170001</td>
+						<td>张三</td>
+						<td>汉族</td>
+						<td>一年级</td>
+						<td>男</td>
+						<td>1999年10月01日</td>
+						<td>通信工程</td>
+						<td>武术</td>
+						<td>18818674239</td>
+						<td>古玩、旅行</td>
+						<td>走读</td>
+					</tr>
+					<tr>
+						<th>3</th>
+						<td>20170001</td>
+						<td>张三</td>
+						<td>汉族</td>
+						<td>一年级</td>
+						<td>男</td>
+						<td>1999年10月01日</td>
+						<td>通信工程</td>
+						<td>武术</td>
+						<td>18818674239</td>
+						<td>古玩、旅行</td>
+						<td>走读</td>
+					</tr>
+					<tr>
+						<th>4</th>
+						<td>20170001</td>
+						<td>张三</td>
+						<td>汉族</td>
+						<td>一年级</td>
+						<td>男</td>
+						<td>1999年10月01日</td>
+						<td>通信工程</td>
+						<td>武术</td>
+						<td>18818674239</td>
+						<td>古玩、旅行</td>
+						<td>走读</td>
+					</tr>
+					<tr>
+						<th>5</th>
+						<td>20170001</td>
+						<td>张三</td>
+						<td>汉族</td>
+						<td>一年级</td>
+						<td>男</td>
+						<td>1999年10月01日</td>
+						<td>通信工程</td>
+						<td>武术</td>
+						<td>18818674239</td>
+						<td>古玩、旅行</td>
+						<td>走读</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<script>
+		window.onload = function(){
+		  var tableCont = document.querySelector('#table-cont')
+		 
+		  function scrollHandle (e){
+		    var scrollTop = this.scrollTop - 1;
+		    this.querySelector('thead').style.transform = 'translate3d(0,' + scrollTop + 'px,0)';
+		  }
+		  
+		  tableCont.addEventListener('scroll',scrollHandle)
+		}
+		</script>
+	</body>
+</html>
