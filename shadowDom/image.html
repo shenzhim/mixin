@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+	</head>
+	<body>
+		<template>
+			<style>
+			.w-image {
+				position: relative;
+			}
+			.w-image img {
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+			.w-image .watermark{
+				position: absolute;
+				font-family: "SimSun";
+				padding: 0 5px;
+				left: 0;
+				bottom: 0;
+				color: #fff;
+				transform: translate(100%, -50%) ;
+				font-size: 20px;
+    			line-height: 30px;
+			}
+			</style>
+			<div class="w-image">
+				<img src=""/>
+				<span class="watermark"></span>
+			</div>
+		</template>
+		<script>
+			(function(doc){
+				"use strict";
+				
+				var WImage = Object.create(HTMLElement.prototype, {
+					width: {
+						get: function(){
+							return this._width;
+						},
+						set: function(width){
+							this._width = width;
+							this._div.style.width = width + 'px';
+						}
+					},
+					height: {
+						get: function(){
+							return this._height;
+						},
+						set: function(height){
+							this._height = height;
+							this._div.style.height = height + 'px';
+						}
+					},
+					src: {
+						get: function(){
+							return this._src;
+						},
+						set: function(src){
+							this._src = src;
+							this._img.setAttribute('src', src);
+						}
+					},
+					watermark: {
+						get: function(){
+							return this._watermark;
+						},
+						set: function(mark){
+							this._watermark = mark;
+							this._mark.innerText = mark; 
+						}
+					}
+				});
+				
+				WImage.createdCallback = function(){
+					var shadowRoot = this.createShadowRoot();
+					var tpl = doc.querySelector('template');
+					this._node = document.importNode(tpl.content, true);
+					this._div = this._node.querySelector('.w-image');
+					this._img = this._node.querySelector('img');
+					this._mark = this._node.querySelector('.watermark');
+
+					this.src = this.getAttribute('src');
+					this.watermark = this.getAttribute('watermark');
+					this.width = this.getAttribute('width');
+					this.height = this.getAttribute('height');
+
+					shadowRoot.appendChild(this._node);
+				};
+				
+				document.registerElement('watermark-img', {prototype: WImage})
+			})(document.currentScript.ownerDocument);
+		</script>
+	</body>
+</html>
