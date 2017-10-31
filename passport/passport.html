@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.pwd-box {
+				width: 640px;
+				position: relative;
+				overflow: hidden;
+			}
+			.fake-box input {
+				width: 100px;
+			    height: 100px;
+			    border: 1px solid;
+			    float: left;
+			    text-align: center;
+			    font-size: 50px;	
+			}
+			.fake-box input.active {
+				border: 2px solid rgba(82, 168, 236, .8);
+				background-image: url(https://t.alipayobjects.com/images/rmsweb/T1nYJhXalXXXXXXXXX.gif);
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+			#pwd-input {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				opacity: .01;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="pwd-box">
+			<input type="tel" name="pwd-input" id="pwd-input" maxlength="6" autofocus/>
+			<div class="fake-box">
+				<input class="active" type="password" readonly="" />
+				<input type="password" readonly="" />
+				<input type="password" readonly="" />
+				<input type="password" readonly="" />
+				<input type="password" readonly="" />
+				<input type="password" readonly="" />
+			</div>
+		</div>
+		<script src="//cdn.bootcss.com/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			var $input = $('.fake-box input');
+			$('#pwd-input').on('input', function(){
+				var pwd = $(this).val().trim();
+				for(var i = 0, len = pwd.length; i < len; i++){
+					$input.eq(i).val(pwd[i]);
+					if (i === len - 1) {
+						$input.removeClass('active');
+						$input.eq(len).addClass('active');
+					}
+				}
+				
+				$input.each(function(){
+					var index = $(this).index();
+					if(index >= len){
+						$(this).val("");
+					}
+				})
+			})
+		</script>
+	</body>
+</html>
