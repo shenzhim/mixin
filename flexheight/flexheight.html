@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.parent {
+				box-sizing: border-box;
+				width: 100%;
+				visibility: hidden;
+				overflow: hidden;
+				background-color: blue;
+				float: left;
+				transition: all 2s ease-in;
+				border: 2px solid #000;
+				
+			}
+			.play {
+				padding: 2px;
+				float: none;
+				visibility:visible;
+				height: 0;
+			}
+			.child {
+				text-align: center;
+				margin: 5px;
+				background-color: red;
+				height: 20px;
+				line-height: 20px;
+			}
+			
+			.next {
+				text-align: center;
+				margin-top: 5px;
+				background: blue;
+				height: 100px;
+				line-height: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="parent">
+			<div class="child">item1</div>
+			<div class="child">item2</div>
+			<div class="child">item3</div>
+			<div class="child">item4</div>
+		</div>
+		<div class="next">next container</div>
+		
+		<script>
+			window.onload = function(){
+				var parent = document.querySelector('.parent'); 
+				var height = parent.getBoundingClientRect().height + 4;
+				
+				parent.className = 'parent play';
+				setTimeout(function(){
+					parent.style.height = height + 'px';	
+				},0)
+			}
+		</script>
+	</body>
+</html>
